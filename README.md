@@ -45,25 +45,28 @@ final result =  await FcmChannelsManager().registerChannel(
       );
 ```
 
-- Notification importance level
+* Notification importance level
+
+
 | Plugin value                                | Android Reference          |
-|--------------------------------------|-------------------|
+|:--------------------------------------|:-------------------|
 |`NotificationImportance.disabled`       | [IMPORTANCE_NONE](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_NONE)   |
 |`NotificationImportance.importanceMin ` | [IMPORTANCE_MIN](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_MIN)   |
 |`NotificationImportance.importanceLow` | [IMPORTANCE_LOW](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_LOW) |
 |`NotificationImportance.importanceDefault` | [IMPORTANCE_DEFAULT](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_DEFAULT) |
 |`NotificationImportance.importanceHight` | [IMPORTANCE_HIGH](https://developer.android.com/reference/android/app/NotificationManager#IMPORTANCE_HIGH) |
 
-- Notification visibility
+* Notification visibility
+
 | Plugin value                                | Description          |
-|--------------------------------------|-------------------|
+|:--------------------------------------|:-------------------|
 |`NotificationVisibility.public`       | Show this notification in its entirety on all lockscreens   |
 |`NotificationVisibility.private ` | Show this notification on all lockscreens, but conceal sensitive or private information on secure lockscreens   |
 |`NotificationVisibility.secret` | Do not reveal any part of this notification on a secure lockscreen |
 
 ### 2. Get all registered channels
 
-You can get all registered channels with base informations about this channel: `id`, `name`, `description`, `importance`
+You can get all registered channels with base informations about this channel: `id`, `name`, `description`, `importance`. You can check the importance level then handle your businesses.
 
 ```dart
 final channesl = await FcmChannelsManager().getChannels();
@@ -83,7 +86,7 @@ Follow the example: `/example`
 
 Demo:
 
-![Demo](/example/demo.gif)
+![/example/demo_channels.gif](https://github.com/TuyenPonos/FCMChannelsManager/blob/main/example/demo_channels.gif)
 
 
 ## Contributions 

@@ -54,8 +54,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     final List<Map<String, dynamic>> _mockData = [
       {
         'id': '1001',
-        'name': 'Orders notification',
-        'description': 'New apply, stop recruiting',
+        'name': 'Social notification',
+        'description': 'Social notification',
         'importance': NotificationImportance.importanceHight,
       },
       {

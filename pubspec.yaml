@@ -1,7 +1,7 @@
 name: fcm_channels_manager
-description: Create and manage Android notification channels
-version: 0.0.1
-homepage: https://github.com/TuyenPonos/SwaggerGenerator
+description: A flutter package that using to create and manage Notification in Android
+version: 0.0.4
+homepage: https://github.com/TuyenPonos/FCMChannelsManager
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
