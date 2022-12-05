@@ -5,6 +5,10 @@ import 'notification_channel.dart';
 import 'notification_importance.dart';
 import 'notification_visibility.dart';
 
+export 'notification_channel.dart';
+export 'notification_importance.dart';
+export 'notification_visibility.dart';
+
 class FcmChannelsManager {
   /// [id] The id of the channel. Must be unique per package.
   /// [name] The user visible name of the channel.
