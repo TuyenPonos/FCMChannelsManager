@@ -23,12 +23,8 @@ class MockFcmChannelsManagerPlatform
   }
 
   @override
-  Future<String?> requestNotificationPermission(Map<String, bool> params) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<String?> getNotificationPermissionStatus() {
+  Future<bool> providesAppNotificationSettings() {
+    // TODO: implement providesAppNotificationSettings
     throw UnimplementedError();
   }
 }

@@ -9,15 +9,11 @@ Support Android 8.0 (API level 26) and above. For more information, visit [Creat
 * Get all channels that have been registered
 * Delete a channel
 
-#### 2. Provide full options to request notification in iOS
-* `badge`: The ability to update the app’s badge.
-* `sound`: The ability to play sounds.
-* `alert`: The ability to display alerts.
-* `carPlay`: The ability to display notifications in a CarPlay environment.
-* `criticalAlert`: The ability to play sounds for critical alerts.
-* `providesAppNotificationSettings`: An option indicating the system should display a button for in-app notification settings.
-* `provisional`: The ability to post noninterrupting notifications provisionally to the Notification Center.
+#### 2. Provide app notification settings in iOS
 
+An option indicating the system should display a button for in-app notification settings. Support iOS 12.0 and above
+
+![/example/notification_settings.png](https://github.com/TuyenPonos/FCMChannelsManager/blob/main/example/notification_settings.png)
 
 ## Installation
 
@@ -89,25 +85,15 @@ Remove registered channel by channel's id. Return success message if channel del
 final result = await FcmChannelsManager().unregisterChannel('1001')
 ```
 
-### 4. Request notification permission
+### 4. Provide app notification settings
 
-Request iOS notification permission and return permission status
+Return true if update `.providesAppNotificationSettings` successfully. The function should call after request notification permission by using `firebase_messaging`
 
 ```dart
- FcmChannelsManager()
-          .requestNotificationPermission(
-            sound: true,
-            alert: true,
-            badge: true,
-            provisional = true,
-            provideAppNotificationSettings: true,
-            carPlay: true,
-            criticalAlert: true,
-            openSettings: true,
-          )
-          .then((value) => log('Permission status: $value'));
+FcmChannelsManager()
+  .providesAppNotificationSettings()
+  .then((value) => log('Permission status: $value'));
 ```
- If user has denied permission, they must go to settings to turn it on manually. `openSettings` is true will open settings.
  
 ## Example
 

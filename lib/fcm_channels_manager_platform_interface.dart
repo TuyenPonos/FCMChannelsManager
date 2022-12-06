@@ -37,11 +37,7 @@ abstract class FcmChannelsManagerPlatform extends PlatformInterface {
     return instance.getChannels();
   }
 
-  Future<String?> requestNotificationPermission(Map<String, bool> params) {
-    return instance.requestNotificationPermission(params);
-  }
-
-  Future<String?> getNotificationPermissionStatus() {
-    return instance.getNotificationPermissionStatus();
+  Future<bool> providesAppNotificationSettings() {
+    return instance.providesAppNotificationSettings();
   }
 }

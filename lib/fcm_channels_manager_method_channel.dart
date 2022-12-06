@@ -37,17 +37,9 @@ class MethodChannelFcmChannelsManager extends FcmChannelsManagerPlatform {
   }
 
   @override
-  Future<String?> requestNotificationPermission(
-      Map<String, bool> params) async {
-    final res = await methodChannel.invokeMethod<String>(
-        'requestNotificationPermission', params);
-    return res;
-  }
-
-  @override
-  Future<String?> getNotificationPermissionStatus() async {
+  Future<bool> providesAppNotificationSettings() async {
     final res = await methodChannel
-        .invokeMethod<String>('getNotificationPermissionStatus');
-    return res;
+        .invokeMethod<bool>('providesAppNotificationSettings');
+    return res ?? false;
   }
 }

@@ -96,59 +96,13 @@ class FcmChannelsManager {
     return FcmChannelsManagerPlatform.instance.getChannels();
   }
 
-  /// Support iOS only
-  ///
-  /// [sound] The ability to play sounds.
-  ///
-  /// [alert] The ability to display alerts.
-  ///
-  /// [badge] The ability to update the app’s badge.
-  ///
-  /// [provisional] Support iOS 12.0 and above. The ability to post noninterrupting notifications provisionally to the Notification Center.
-  ///
-  /// [carPlay] The ability to display notifications in a CarPlay environment.
-  ///
-  /// [criticalAlert] Support iOS 12.0 and above. The ability to play sounds for critical alerts.
-  ///
   /// [providesAppNotificationSettings] Support iOS 12.0 and above. An option indicating the system should display a button for in-app notification settings.
-  ///
-  /// [openSettings] If user has denied permission, they must go to settings to turn it on manually. [openSettings] is true will open settings in this case
 
-  Future<String?> requestNotificationPermission({
-    bool sound = true,
-    bool alert = true,
-    bool badge = true,
-    bool provisional = false,
-    bool carPlay = false,
-    bool criticalAlert = false,
-    bool providesAppNotificationSettings = false,
-    bool openSettings = false,
-  }) {
-    if (!Platform.isIOS) {
-      throw UnsupportedError('The method support iOS only');
-    }
-    return FcmChannelsManagerPlatform.instance.requestNotificationPermission({
-      'sound': sound,
-      'alert': alert,
-      'badge': badge,
-      'provisional': provisional,
-      'carPlay': carPlay,
-      'criticalAlert': criticalAlert,
-      'providesAppNotificationSettings': providesAppNotificationSettings,
-      'openSettings': openSettings,
-    });
-  }
-
-  /// Support iOS only
-  ///
-  /// Return value: [granted], [unknown], [denied], [provisional] or null
-  ///
-
-  Future<String?> getNotificationPermissionStatus() {
+  Future<bool> providesAppNotificationSettings() {
     if (!Platform.isIOS) {
       throw UnsupportedError('The method support iOS only');
     }
     return FcmChannelsManagerPlatform.instance
-        .getNotificationPermissionStatus();
+        .providesAppNotificationSettings();
   }
 }
