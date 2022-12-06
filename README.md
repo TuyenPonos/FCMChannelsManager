@@ -2,13 +2,22 @@
 The `fcm_channels_manager` is a flutter package that using to create and manage Notification in Android
 ## Features
 
-The plugin provide an API for Android:
+#### 1. The plugin provide an API for Android to manage notification channels. 
+Support Android 8.0 (API level 26) and above. For more information, visit [Create and Manage Notification Channels](https://developer.android.com/develop/ui/views/notifications/channels)
 
 * Create a new channel
 * Get all channels that have been registered
 * Delete a channel
 
-Support Android 8.0 (API level 26) and above. For more information, visit [Create and Manage Notification Channels](https://developer.android.com/develop/ui/views/notifications/channels)
+#### 2. Provide full options to request notification in iOS
+* `badge`: The ability to update the app’s badge.
+* `sound`: The ability to play sounds.
+* `alert`: The ability to display alerts.
+* `carPlay`: The ability to display notifications in a CarPlay environment.
+* `criticalAlert`: The ability to play sounds for critical alerts.
+* `providesAppNotificationSettings`: An option indicating the system should display a button for in-app notification settings.
+* `provisional`: The ability to post noninterrupting notifications provisionally to the Notification Center.
+
 
 ## Installation
 
@@ -80,6 +89,26 @@ Remove registered channel by channel's id. Return success message if channel del
 final result = await FcmChannelsManager().unregisterChannel('1001')
 ```
 
+### 4. Request notification permission
+
+Request iOS notification permission and return permission status
+
+```dart
+ FcmChannelsManager()
+          .requestNotificationPermission(
+            sound: true,
+            alert: true,
+            badge: true,
+            provisional = true,
+            provideAppNotificationSettings: true,
+            carPlay: true,
+            criticalAlert: true,
+            openSettings: true,
+          )
+          .then((value) => log('Permission status: $value'));
+```
+ If user has denied permission, they must go to settings to turn it on manually. `openSettings` is true will open settings.
+ 
 ## Example
 
 Follow the example: `/example`

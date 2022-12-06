@@ -1,5 +1,6 @@
-import 'package:fcm_channels_manager/notification_channel.dart';
-import 'package:fcm_channels_manager/notification_importance.dart';
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:fcm_channels_manager/fcm_channels_manager.dart';
@@ -25,6 +26,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       initChannels();
     });
+    if (Platform.isIOS) {
+      _fcmChannelsManagerPlugin
+          .requestNotificationPermission(
+            providesAppNotificationSettings: true,
+          )
+          .then((value) => log('Permission status: $value'));
+    }
     WidgetsBinding.instance.addObserver(this);
   }
 

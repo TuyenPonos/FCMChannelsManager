@@ -1,5 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:io';
+
 import 'fcm_channels_manager_platform_interface.dart';
 import 'notification_channel.dart';
 import 'notification_importance.dart';
@@ -11,18 +13,22 @@ export 'notification_visibility.dart';
 
 class FcmChannelsManager {
   /// [id] The id of the channel. Must be unique per package.
+  ///
   /// [name] The user visible name of the channel.
   /// The recommended maximum length is 40 characters;
+  ///
   /// [description] Sets the user visible description of this channel.
   /// The recommended maximum length is 300 characters;
   /// the value may be truncated if it is too long
+  ///
   /// [importance] The importance of the channel.
   /// This controls how interruptive notifications posted to this channel are
   /// it is one of the constants from NotificationImportance class
   /// [visibility]Sets whether notifications posted to this channel appear on the lockscreen or not, and if so,
   /// whether they appear in a redacted form. See e.g.
   /// Only modifiable by the system and notification ranker
-  /// [bubble] IMPORTANT! Will take effect only on sdk version 29+
+  ///
+  /// [bubbles] IMPORTANT! Will take effect only on sdk version 29+
   /// and will be silently ignored on any prior versions
   /// Sets whether notifications posted to this
   /// channel can appear outside of the notification
@@ -33,12 +39,17 @@ class FcmChannelsManager {
   /// <p>Only modifiable before the channel is submitted to
   /// {@link NotificationManager#createNotificationChannel(NotificationChannel)}.</p>
   /// @see Notification#getBubbleMetadata()
+  ///
   /// [vibration] Sets whether notification posted to
   /// this channel should vibrate
+  ///
   /// [sound] whether this notification should play a sound
   /// if you pass "sound": "default" when sending a notification
+  ///
   /// [badge] Sets whether notifications posted to this channel
   /// can appear as application icon badges in a Launcher
+  ///
+
   Future<String?> registerChannel({
     required String id,
     required String name,
@@ -50,6 +61,9 @@ class FcmChannelsManager {
     bool sound = true,
     bool badge = true,
   }) {
+    if (!Platform.isAndroid) {
+      throw UnsupportedError('The method support Android only');
+    }
     final _visibility = visibility.toValue;
     final _importance = importance.toValue;
     assert(_visibility >= -1 && _visibility <= 1);
@@ -69,10 +83,72 @@ class FcmChannelsManager {
   }
 
   Future<String?> unregisterChannel(String channelId) {
+    if (!Platform.isAndroid) {
+      throw UnsupportedError('The method support Android only');
+    }
     return FcmChannelsManagerPlatform.instance.unregisterChannel(channelId);
   }
 
   Future<List<NotificationChannel>> getChannels() {
+    if (!Platform.isAndroid) {
+      throw UnsupportedError('The method support Android only');
+    }
     return FcmChannelsManagerPlatform.instance.getChannels();
+  }
+
+  /// Support iOS only
+  ///
+  /// [sound] The ability to play sounds.
+  ///
+  /// [alert] The ability to display alerts.
+  ///
+  /// [badge] The ability to update the app’s badge.
+  ///
+  /// [provisional] Support iOS 12.0 and above. The ability to post noninterrupting notifications provisionally to the Notification Center.
+  ///
+  /// [carPlay] The ability to display notifications in a CarPlay environment.
+  ///
+  /// [criticalAlert] Support iOS 12.0 and above. The ability to play sounds for critical alerts.
+  ///
+  /// [providesAppNotificationSettings] Support iOS 12.0 and above. An option indicating the system should display a button for in-app notification settings.
+  ///
+  /// [openSettings] If user has denied permission, they must go to settings to turn it on manually. [openSettings] is true will open settings in this case
+
+  Future<String?> requestNotificationPermission({
+    bool sound = true,
+    bool alert = true,
+    bool badge = true,
+    bool provisional = false,
+    bool carPlay = false,
+    bool criticalAlert = false,
+    bool providesAppNotificationSettings = false,
+    bool openSettings = false,
+  }) {
+    if (!Platform.isIOS) {
+      throw UnsupportedError('The method support iOS only');
+    }
+    return FcmChannelsManagerPlatform.instance.requestNotificationPermission({
+      'sound': sound,
+      'alert': alert,
+      'badge': badge,
+      'provisional': provisional,
+      'carPlay': carPlay,
+      'criticalAlert': criticalAlert,
+      'providesAppNotificationSettings': providesAppNotificationSettings,
+      'openSettings': openSettings,
+    });
+  }
+
+  /// Support iOS only
+  ///
+  /// Return value: [granted], [unknown], [denied], [provisional] or null
+  ///
+
+  Future<String?> getNotificationPermissionStatus() {
+    if (!Platform.isIOS) {
+      throw UnsupportedError('The method support iOS only');
+    }
+    return FcmChannelsManagerPlatform.instance
+        .getNotificationPermissionStatus();
   }
 }

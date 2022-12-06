@@ -1,0 +1,22 @@
+PODS:
+  - fcm_channels_manager (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - fcm_channels_manager (from `.symlinks/plugins/fcm_channels_manager/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  fcm_channels_manager:
+    :path: ".symlinks/plugins/fcm_channels_manager/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  fcm_channels_manager: 771aab0781e1959d383841ad307f0a6dfd16978b
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.3

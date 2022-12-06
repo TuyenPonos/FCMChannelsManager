@@ -21,6 +21,16 @@ class MockFcmChannelsManagerPlatform
   Future<List<NotificationChannel>> getChannels() {
     throw UnimplementedError();
   }
+
+  @override
+  Future<String?> requestNotificationPermission(Map<String, bool> params) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String?> getNotificationPermissionStatus() {
+    throw UnimplementedError();
+  }
 }
 
 void main() {

@@ -1,6 +1,6 @@
 name: fcm_channels_manager
 description: A flutter package that using to create and manage Notification in Android
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/TuyenPonos/FCMChannelsManager
 
 environment:
